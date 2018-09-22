@@ -1,9 +1,8 @@
 #include <stdio.h>
 unsigned short ComPort_Flag;
-unsigned short CMD_Length;
+unsigned short CMD_L;
 unsigned char CMD_Buf[128];
-unsigned char LO[256] = 
-{
+unsigned char LO[256] = {
 	0x00,0xc1,0x81,0x40,0x01,0xc0,0x80,0x41,
     0x01,0xc0,0x80,0x41,0x00,0xc1,0x81,0x40,
     0x01,0xc0,0x80,0x41,0x00,0xc1,0x81,0x40,
@@ -73,29 +72,24 @@ unsigned char HI[256] = {
 };
 
 
-
-
 void Cal_Checksum(void)
 {
     int i;
-    unsigned char crc_lo,crc_hi;
     unsigned char temp;
-    crc_lo=CMD_Buf[CMD_Length-2];
-    crc_hi=CMD_Buf[CMD_Length-1];
-    for(i=0;i<(CMD_Length-2);i++)
+    CMD_Buf[CMD_L-2] = 0xFF; // CRCL
+    CMD_Buf[CMD_L-1] = 0xFF; // CRCH
+    for(i=0;i<(CMD_L-2);i++)
     {
-        temp=crc_lo^CMD_Buf[i];
-        crc_lo=LO[temp]^crc_hi;
-        crc_hi=HI[temp];
+        temp=CMD_Buf[CMD_L-1]^CMD_Buf[i];
+        CMD_Buf[CMD_L-2]=LO[temp]^CMD_Buf[CMD_L-1];
+        CMD_Buf[CMD_L-1]=HI[temp];
     }
-    CMD_Buf[CMD_Length-2]=crc_lo;
-    CMD_Buf[CMD_Length-1]=crc_hi;
 }
 
 void main()
 {
     // TODO: Add your control notification handler code here
-    CMD_Length=13;
+    CMD_L=13;
     CMD_Buf[0]=0xE2;
     CMD_Buf[1]=0xE4;
     CMD_Buf[2]=0x0F;
@@ -107,8 +101,6 @@ void main()
     CMD_Buf[8]=0x02;
     CMD_Buf[9]=0x03; // COM
     CMD_Buf[10]=0x00; // ARG
-    CMD_Buf[11]=0xFF; // CRCL
-    CMD_Buf[12]=0xFF; // CRCH
     Cal_Checksum();
     
     for (int i = 0; i < 13; i++)
