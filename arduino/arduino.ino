@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <SoftwareSerial.h>
+
 unsigned short lenght;
 unsigned char cb[128];
 unsigned char LO[256] = {
@@ -103,27 +104,41 @@ void setKey(){
   cb[8]=0x02;
 }
 
-void setup() {
-  setKey();
-}
-
 void send(int com, int arg){
   cb[9]=com;
   cb[10]=arg;
   calcCheckSum();
   for (int i = 0; i < 13; i++)
   {
-    printf("%02X", cb[i]);
-    printf("\n");
+    //"%02X"
+    Serial.println(cb[i]);
   }
 }
+
+SoftwareSerial mySerial(10, 11); // RX, TX
+
+void setup() {
+  setKey();
+  Serial.begin(57600);
+  while (!Serial) {}
+
+
+  Serial.println("Goodnight moon!");
+
+  // set the data rate for the SoftwareSerial port
+  mySerial.begin(4800);
+  mySerial.println("Hello, world?");
+}
+
+
 
 void loop() {
   lenght = 13;
   send(0x03, 0x00);
-}
-
-void main(){
-  setup();
-  loop();
+  if (mySerial.available()) {
+    Serial.write(mySerial.read());
+  }
+  if (Serial.available()) {
+    mySerial.write(Serial.read());
+  }
 }
