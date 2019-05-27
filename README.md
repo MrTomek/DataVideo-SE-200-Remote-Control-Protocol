@@ -68,6 +68,11 @@ DataVideo SE-2000 RS-232 Remote Control Protocol
 | 23 | **82** | Minutes(BCD) | System time of Minute adjustment |
 | 24 | **83** | Second(BCD) | System time of Second adjustment |
 | 25 | **90** | 00 | Get device status |
+  
+  
+   
+   
+## Table Status Code
 
 | Byte 1 | Byte 2 | Byte 3 | Byte 4 | Byte 5 | Byte 6 | Byte 7 | Byte 8 | Byte 9 | Byte 10 | Byte 11 | Byte 12 | Byte 13 | Byte 14 | Byte 15 | Byte 16 | Byte 17 | Byte 18 | Byte 19 | Byte 20 | Byte 21 | Byte 22 | Byte 23 | Byte 24 | Byte 25 | Byte 26 | Byte 27 | Byte 28 | Byte 29 | Byte 30 | Byte 31 | Byte 32 | Byte 33 | Byte 34 | Byte 35 | Byte 36 | Byte 37 | Byte 38 | Byte 39 | Byte 40 | Byte 41 |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--| --|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
