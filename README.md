@@ -261,6 +261,14 @@ Logo and Clock activation flags:
 - **bit 3:** Clock activation instead of Logo 2 (0- Logo 2, 1- Clock), 
 - **bits 2… 0:** reserved, ignore;
 - 
-1.26. COM = 0xA0 – copy and write setting parameters Common_Settings (Section 2) from the device’s EEPROM into the device’s volatile memory. ARG = 0. Device replies with LEN = 0, ANSW is not available. 
+ 1.26. COM = 0xA0 – copy and write setting parameters Common_Settings (Section 2) from the device’s EEPROM into the device’s volatile memory. ARG = 0. Device replies with LEN = 0, ANSW is not available. 
 
-1.27. COM = 0xA0 – device soft reset. ARG = 0. Device replies with LEN = 0, ANSW is not available. The device executes soft reset and it completely reboots (similar to the power recycle). It is impossible to establish a connection with the device for around 8 seconds.
+ 1.27. COM = 0xA0 – device soft reset. ARG = 0. Device replies with LEN = 0, ANSW is not available. The device executes soft reset and it completely reboots (similar to the power recycle). It is impossible to establish a connection with the device for around 8 seconds.
+ 
+ 
+ 
+ ### Example Comand
+
+Main Source 2 = `E2, E4, 0F, 00, FF, 01, FE, 40, 02, 03, 01, 0C, D6`
+Speed 1 : = `E2, E4, 0F, 00, FF, 01, FE, 40, 02, 20, 00, D4, 26`
+Mix : = `E2, E4, 0F, 00, FF, 01, FE, 40, 02, 32, 00, D8, 86`
