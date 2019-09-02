@@ -269,6 +269,6 @@ Logo and Clock activation flags:
  
  ### Example Comand
 
-Main Source 2 = `E2, E4, 0F, 00, FF, 01, FE, 40, 02, 03, 01, 0C, D6`
-Speed 1 : = `E2, E4, 0F, 00, FF, 01, FE, 40, 02, 20, 00, D4, 26`
-Mix : = `E2, E4, 0F, 00, FF, 01, FE, 40, 02, 32, 00, D8, 86`
+Main Source 2 = `E2, E4, 0F, 00, FF, 01, FE, 40, 02, 03, 01, 0C, D6`  
+Speed 1 : = `E2, E4, 0F, 00, FF, 01, FE, 40, 02, 20, 00, D4, 26`  
+Mix : = `E2, E4, 0F, 00, FF, 01, FE, 40, 02, 32, 00, D8, 86`   
