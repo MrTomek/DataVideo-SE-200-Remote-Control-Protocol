@@ -1,5 +1,5 @@
 #include <stdio.h>
-unsigned short lenght;
+unsigned short lenght = 13;
 unsigned char cb[128];
 unsigned char LO[256] = {
   0x00,0xc1,0x81,0x40,0x01,0xc0,0x80,0x41,

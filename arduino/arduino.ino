@@ -70,11 +70,11 @@ unsigned char HI[256] = {
 };
 
 int loF(int a){
-    return LO[a];
+  return LO[a];
 }
 
 int hiF(int a){
-    return HI[a];
+  return HI[a];
 }
 
 void calcCheckSum(){
@@ -84,9 +84,9 @@ void calcCheckSum(){
   cb[lenght-1]=0xFF; //CRCH
   for(i=0;i<(lenght-2);i++)
   {
-      temp=cb[lenght-2]^cb[i];
-      cb[lenght-2]=loF(temp)^cb[lenght-1];
-      cb[lenght-1]=hiF(temp);
+    temp=cb[lenght-2]^cb[i];
+    cb[lenght-2]=loF(temp)^cb[lenght-1];
+    cb[lenght-1]=hiF(temp);
   }
 }
 
