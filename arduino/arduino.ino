@@ -107,21 +107,43 @@ void send(int com, int arg){
   cb[9]=com;
   cb[10]=arg;
   calcCheckSum();
+  Serial1.print("Print HEX:");
   for (int i = 0; i < 13; i++)
   {
-    Serial.println(cb[i]);
+    Serial1.print(cb[i], HEX);
   }
+  Serial1.println();
+  Serial1.print("Print BIN:");
+  for (int i = 0; i < 13; i++)
+  {
+    Serial1.print(cb[i], BIN);
+  }
+  Serial1.println();
+  Serial1.print("Write:");
+  for (int i = 0; i < 13; i++)
+  {
+    Serial1.write(cb[i]);
+  }
+  Serial1.println();
 }
 
 void setup() {
   Serial.begin(115200);
+  Serial1.begin(115200);
   while (!Serial) {}
+  delay(1000);
   Serial.println("Goodnight moon!");
 }
 
 
 
 void loop() {
+  send(0x03, 0x00);
+  delay(3000);
   send(0x03, 0x01);
-  delay(5000);
+  delay(3000);
+  while (Serial1.available()) {
+    char a = (char)Serial.read();
+    Serial.write(Serial1.read());
+  }
 }
